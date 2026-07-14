@@ -19,32 +19,35 @@ mongoose.connect("mongodb://sivani_r_anil:siva123@ac-0k7dbum-shard-00-00.ojotgu3
 
 
 
-const pet =mongoose.model("Pets", new mongoose.Schema(
+const pet = mongoose.model("Pets", new mongoose.Schema(
     {
-        id:String,
-        name:String,
-        petType:String,
-        breed:String,
-        age:String,
-        weight:String,
-        vaccinationStatus:String,
-        ownerName:String,
-        phone:String,
-        email:String,
-        checkinDate:String,
-        checkoutDate:String,
-        kennelNo:String
+        id: String,
+        name: String,
+        petType: String,
+        breed: String,
+        age: String,
+        weight: String,
+        vaccinationStatus: String,
+        ownerName: String,
+        phone: String,
+        email: String,
+        checkinDate: String,
+        checkoutDate: String,
+        kennelNo: String
     }
 ))
 
 
-app.post("/add-pet",async (req,res) =>{
+app.post("/add-pet", async (req, res) => {
     await pet.create(req.body)
-    res.json({"status":"success"})
+    res.json({ "status": "success" })
 })
 
 
-
+app.post("/view-pets", async (req, res) => {
+    const pets = await pet.find()
+    res.json(pets)
+})
 
 
 
